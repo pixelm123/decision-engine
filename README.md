@@ -96,3 +96,13 @@ decision-engine/
 **Guest auth uses room-scoped JWTs.** Participants join with a display name only. Their token encodes `roomId` and `role: PARTICIPANT` so they can only interact with that room.
 
 **Audit logging is fire-and-forget.** `AuditService` catches and discards its own errors so a logging failure never breaks the main request path.
+
+
+## Live Demo
+- **App:** https://decision-engine.vercel.app
+- **API:** https://decision-engine-api-15f2.onrender.com
+
+## Demo accounts
+All use password `password123`
+- alice@test.com
+- bob@test.com
