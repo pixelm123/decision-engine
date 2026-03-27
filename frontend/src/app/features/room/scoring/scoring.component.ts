@@ -23,7 +23,7 @@ import { Option, Criterion } from '../../../shared/models';
             Back to Lobby
           </a>
           <h1 class="text-2xl font-bold text-slate-900">Score the Options</h1>
-          <p class="text-slate-500 mt-1 text-sm">Round {{ currentRound() }} — drag each slider to rate 1–10</p>
+          <p class="text-slate-500 mt-1 text-sm">Round {{ currentRound() }} - drag each slider to rate 1–10</p>
         </div>
 
         <div class="flex items-center gap-3">
@@ -57,7 +57,7 @@ import { Option, Criterion } from '../../../shared/models';
         </a>
       </div>
 
-      <!-- Score cards — one per option -->
+      <!-- Score cards - one per option -->
       <div class="space-y-4">
         <div *ngFor="let opt of options(); let oi = index"
           class="card animate-fade-up"
@@ -194,10 +194,10 @@ export class ScoringComponent implements OnInit, OnDestroy {
 
   scoreLabel(val: number | null): { text: string; class: string } {
     if (val === null) return { text: 'Not rated', class: 'text-slate-400 bg-slate-50' };
-    if (val <= 3) return { text: `${val} — Poor`, class: 'text-red-600 bg-red-50' };
-    if (val <= 6) return { text: `${val} — Fair`, class: 'text-amber-600 bg-amber-50' };
-    if (val <= 8) return { text: `${val} — Good`, class: 'text-emerald-600 bg-emerald-50' };
-    return { text: `${val} — Excellent`, class: 'text-indigo-600 bg-indigo-50' };
+    if (val <= 3) return { text: `${val} - Poor`, class: 'text-red-600 bg-red-50' };
+    if (val <= 6) return { text: `${val} - Fair`, class: 'text-amber-600 bg-amber-50' };
+    if (val <= 8) return { text: `${val} - Good`, class: 'text-emerald-600 bg-emerald-50' };
+    return { text: `${val} - Excellent`, class: 'text-indigo-600 bg-indigo-50' };
   }
 
   submit() {

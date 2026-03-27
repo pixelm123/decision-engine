@@ -149,7 +149,7 @@ import { AggregatedResultEvent, ScoreBreakdown } from '../../../shared/models';
                       [class]="cellClass(score.avg)">
                       {{ score.avg | number:'1.1-1' }}
                     </span>
-                    <span *ngIf="score.avg === null" class="text-slate-300 text-xs">—</span>
+                    <span *ngIf="score.avg === null" class="text-slate-300 text-xs">-</span>
                   </td>
                 </tr>
               </tbody>

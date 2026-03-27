@@ -24,7 +24,7 @@ import { WebSocketService } from '../../../core/services/websocket.service';
             Start making smarter<br/>group decisions.
           </h2>
           <p class="text-indigo-200 mt-4 text-lg">
-            Create a room, invite your team, score options with weighted criteria — get a clear winner.
+            Create a room, invite your team, score options with weighted criteria - get a clear winner.
           </p>
         </div>
         <p class="text-indigo-300 text-sm">© 2026 Decision Engine</p>

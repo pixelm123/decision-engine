@@ -24,7 +24,7 @@ import { WebSocketService } from '../../../core/services/websocket.service';
             Make better decisions,<br/>together.
           </h2>
           <p class="text-indigo-200 mt-4 text-lg leading-relaxed">
-            Real-time collaborative scoring for any group decision — weighted, transparent, and final.
+            Real-time collaborative scoring for any group decision - weighted, transparent, and final.
           </p>
         </div>
         <p class="text-indigo-300 text-sm">© 2026 Decision Engine</p>

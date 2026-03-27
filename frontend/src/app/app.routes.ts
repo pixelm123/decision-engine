@@ -51,7 +51,7 @@ export const routes: Routes = [
     ],
   },
 
-  // Public join route — no auth guard, guest JWT issued on join
+  // Public join route - no auth guard, guest JWT issued on join
   {
     path: 'join/:roomId',
     loadComponent: () =>

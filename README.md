@@ -5,7 +5,7 @@ A real-time collaborative decision-making tool. Groups evaluate options against 
 ## What it does
 
 - A host creates a room and defines the options being evaluated and the criteria to score them against, each with a weight that sums to 1
-- Participants join via an invite link — no account required
+- Participants join via an invite link - no account required
 - Once scoring opens, everyone rates each option against each criterion on a 1–10 scale
 - Scores are aggregated in real time using a weighted average and broadcast to all participants via WebSocket
 - The host can run multiple rounds, review a per-criterion breakdown, and finalize the decision
@@ -17,7 +17,7 @@ A real-time collaborative decision-making tool. Groups evaluate options against 
 | Frontend | Angular 18, Tailwind CSS, RxJS, Angular CDK |
 | Backend | NestJS, TypeScript, Socket.io |
 | Database | PostgreSQL via Prisma ORM |
-| Auth | JWT — full tokens for hosts, room-scoped tokens for guests |
+| Auth | JWT - full tokens for hosts, room-scoped tokens for guests |
 | Hosting | Vercel (frontend), Render (backend + DB) |
 
 ## Running locally

@@ -14,7 +14,7 @@ export const UpdateCriterionSchema = z.object({
 });
 
 export const ReorderCriteriaSchema = z.object({
-  // Array of { id, order } pairs — client sends new ordering after drag-and-drop
+  // Array of { id, order } pairs - client sends new ordering after drag-and-drop
   order: z.array(z.object({ id: z.string(), order: z.number().int().min(0) })),
 });
 
