@@ -65,7 +65,7 @@ export class CriteriaService {
       },
     });
 
-    // Weight sum is validated on submission, not on creation — allows building up criteria progressively
+    // Weight sum is validated on submission, not on creation - allows building up criteria progressively
     await this.auditService.log(roomId, userId, 'criterion_created', {
       criterionId: criterion.id,
       label: criterion.label,
@@ -120,7 +120,7 @@ export class CriteriaService {
     return this.prisma.criterion.delete({ where: { id: criterionId } });
   }
 
-  // Bulk reorder after drag-and-drop — updates `order` field for all affected criteria
+  // Bulk reorder after drag-and-drop - updates `order` field for all affected criteria
   async reorder(roomId: string, userId: string, dto: ReorderCriteriaDto) {
     await this.assertHost(roomId, userId);
 
@@ -136,7 +136,7 @@ export class CriteriaService {
     return this.findAll(roomId);
   }
 
-  // Called before scoring begins — enforces that weights are valid
+  // Called before scoring begins - enforces that weights are valid
   async validateWeights(roomId: string) {
     const criteria = await this.prisma.criterion.findMany({
       where: { roomId },

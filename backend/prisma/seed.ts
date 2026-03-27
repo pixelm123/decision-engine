@@ -237,7 +237,7 @@ async function main() {
   });
 
   const [aws, gcp, azure] = await prisma.$transaction([
-    prisma.option.create({ data: { roomId: room3.id, label: 'AWS',         description: 'Amazon Web Services — industry leader.' } }),
+    prisma.option.create({ data: { roomId: room3.id, label: 'AWS',         description: 'Amazon Web Services - industry leader.' } }),
     prisma.option.create({ data: { roomId: room3.id, label: 'Google Cloud', description: 'Strong ML/data tooling, Kubernetes origin.' } }),
     prisma.option.create({ data: { roomId: room3.id, label: 'Azure',       description: 'Microsoft cloud, strong enterprise integration.' } }),
   ]);
@@ -353,7 +353,7 @@ async function main() {
   const room5 = await prisma.decisionRoom.create({
     data: {
       title: 'Office Catering Vendor',
-      description: 'Monthly catering contract — evaluated by the ops team.',
+      description: 'Monthly catering contract - evaluated by the ops team.',
       hostId: sara.id,
       status: RoomStatus.FINALIZED,
       currentRound: 1,
