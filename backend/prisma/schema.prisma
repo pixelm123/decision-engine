@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum RoomStatus {
+  OPEN
+  SCORING
+  REVIEWING
+  FINALIZED
+}
+
+enum ParticipantRole {
+  HOST
+  PARTICIPANT
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  displayName  String?
+  passwordHash String
+  createdAt    DateTime      @default(now())
+
+  hostedRooms       DecisionRoom[] @relation("HostRooms")
+  participants      Participant[]
+  scores            Score[]
+  auditLogs         AuditLog[]
+}
+
+model DecisionRoom {
+  id           String     @id @default(cuid())
+  title        String
+  description  String?
+  hostId       String
+  status       RoomStatus @default(OPEN)
+  currentRound Int        @default(1)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  host              User               @relation("HostRooms", fields: [hostId], references: [id])
+  participants      Participant[]
+  options           Option[]
+  criteria          Criterion[]
+  aggregatedResults AggregatedResult[]
+  auditLogs         AuditLog[]
+}
+
+model Participant {
+  id       String          @id @default(cuid())
+  roomId   String
+  userId   String
+  role     ParticipantRole @default(PARTICIPANT)
+  joinedAt DateTime        @default(now())
+
+  room DecisionRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user User         @relation(fields: [userId], references: [id])
+
+  @@unique([roomId, userId])
+}
+
+model Option {
+  id          String   @id @default(cuid())
+  roomId      String
+  label       String
+  description String?
+  createdAt   DateTime @default(now())
+
+  room              DecisionRoom       @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  scores            Score[]
+  aggregatedResults AggregatedResult[]
+}
+
+model Criterion {
+  id     String  @id @default(cuid())
+  roomId String
+  label  String
+  weight Decimal @db.Decimal(5, 4)
+  order  Int
+  config Json    @default("{}")
+
+  room   DecisionRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  scores Score[]
+}
+
+model Score {
+  id          String   @id @default(cuid())
+  userId      String
+  optionId    String
+  criterionId String
+  roundNumber Int
+  value       Int
+  createdAt   DateTime @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  option    Option    @relation(fields: [optionId], references: [id], onDelete: Cascade)
+  criterion Criterion @relation(fields: [criterionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, optionId, criterionId, roundNumber])
+  @@index([optionId, criterionId, roundNumber])
+}
+
+model AggregatedResult {
+  id            String   @id @default(cuid())
+  roomId        String
+  optionId      String
+  roundNumber   Int
+  weightedScore Decimal  @db.Decimal(10, 4)
+  calculatedAt  DateTime @default(now())
+
+  room   DecisionRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  option Option       @relation(fields: [optionId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, optionId, roundNumber])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  roomId    String
+  userId    String
+  action    String
+  metadata  Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  room DecisionRoom @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user User         @relation(fields: [userId], references: [id])
+
+  @@index([roomId, createdAt])
+}
