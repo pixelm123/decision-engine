@@ -103,6 +103,6 @@ decision-engine/
 - **API:** https://decision-engine-api-15f2.onrender.com
 
 ## Demo accounts
-All use password `password123`
-- alice@test.com
+All use password `Password123`
+- Alice@test.com
 - bob@test.com
